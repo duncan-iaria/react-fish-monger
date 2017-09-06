@@ -40,6 +40,15 @@ class App extends React.Component
         this.setState( {fishes: sampleFishes } );
     }
 
+    addToOrder( tKey )
+    {
+        const tempOrderState = { ...this.state.order };
+
+        tempOrderState[tKey] = tempOrderState[tKey] + 1 || 1;
+
+        this.setState( { order: tempOrderState } );
+    }
+
     render()
     {
         return(
@@ -48,7 +57,7 @@ class App extends React.Component
                     <Header tagline="Seafood Yum Yum"/>
                     <ul className="list-of-fishes">
                     { 
-                        Object.keys( this.state.fishes ).map( key => <Fish key={key}/> )
+                        Object.keys( this.state.fishes ).map( key => <Fish key={ key } details={ this.state.fishes[key] }/> )
                     }
                     </ul>
                 </div>
